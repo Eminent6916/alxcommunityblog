@@ -15,4 +15,9 @@ The Alx community blog is a project aimed to provide a much user friendly and in
 
 
 # Screenshots of the Project
-![Registration_Page]{screenshots/Registration page.jpg}
+![Registration_Page](screenshots/Registration%20page.jpg)
+![Login](screenshots/Login.jpg)
+![Dashboard](screenshots/Dashboard.jpg)
+![Blog_Section](screenshots/Blog%20section.jpg)
+![Comment_Section](screenshots/Comment%20section.jpg)
+![Blog_comment_section](screenshots/Blog%20comment%20section.jpg)
