@@ -8,4 +8,3 @@ The blog will also make it an easy access to get information and answers from th
 The community blog also aims at growing the Alx Community as a whole.
 It will create Awareness About a Course, Topic or concept.
 It will finally serve the existing slack community.
-
