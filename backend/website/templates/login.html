@@ -1,0 +1,31 @@
+{% extends "authbase.html" %}
+{% block title %}
+<title> Login -Alx Community Blog</title>
+{% endblock title %}
+{% block auth_form%}
+  <form class="sm-gap" method="POST" id="new_user"  accept-charset="UTF-8" >
+
+     <div class="field">
+      <label class="control-label" for="user_email">Email</label><br>
+      <input autofocus="autofocus" class="form-control" type="text" name="email" id="email" />
+    </div>
+
+    <div class="field">
+      <label class="control-label" for="user_password">Password</label><br>
+      <input autocomplete="off" class="form-control" type="password" name="password" id="password" />
+    </div>
+
+     <div class="row mt-1">
+        
+          <small class="text-muted">
+            Don't have any account yet? Please
+            <a href="/signup">Register</a>
+          </small>
+     
+      </div>
+
+    <div class="actions">
+      <input type="submit" name="commit" value="Log in" class="btn btn-primary" data-disable-with="Log in" />
+    </div>
+</form>
+{% endblock auth_form %}

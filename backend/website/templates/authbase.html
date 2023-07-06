@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="google" content="notranslate">
+
+
+      <link rel="stylesheet" href="https://use.typekit.net/xgz4ilr.css">
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" > 
+      <script src="/assets/application-54114f22a70e5f69761998e8ac495fbe3bc128fecc9e13aa1cea5d1b8aa37b6d.js"></script>
+      <link rel="shortcut icon" type="image/x-icon" href="/favicon_alx.ico" />
+      <meta name="csrf-param" content="authenticity_token" />
+      <meta name="csrf-token" content="nyQLMxliZq0oTAyK1wJG2yQI5T4ZbyvFMw7vUGAYQCLauN9jkZ55Ng6-zcjpzpTHHPqwUM1DFjU_F2z-_OhtIw" />
+
+      <link rel="apple-touch-icon" href="/apple-touch-icon_alx.png">
+      {% block title %}
+      
+      {% endblock title %}
+  </head>
+
+  <body class="env_production notranslate"
+        translate="no"
+        class="notranslate"
+        data-theme-suffix="_alx">
+    
+
+
+    <main>
+        <div id="layout-bars">
+          
+        </div>
+
+      <article class="">
+
+        <div class="logged_out_form">
+
+        <h2 class="hbtn_logo">
+
+        </h2>
+        {% with messages = get_flashed_messages(with_categories=True)%}
+          {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-danger alert-dismissible  show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert"> X </button>
+            </div>
+            {% endfor %}
+          
+          {% else %}
+          {% endif %}
+
+        {% endwith %}
+
+        
+        {% block auth_form %}
+        
+        {% endblock auth_form %}
+
+        </div>
+
+
+    </article>
+
+      <div class="copyright">Copyright © 2023 ALX-Community Blog , All rights reserved.</div>
+
+    </main>
+
+
+
+
+  </body>
+</html>
