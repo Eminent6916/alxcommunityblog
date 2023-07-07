@@ -1,0 +1,248 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>Blog- Alx Community Blog</title>
+{% endblock head %}
+
+{% block body %}
+ <!-- ======= Blog Single Section ======= -->
+    <section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+        {% for post in posts %}
+
+         <div class="col-md-8">
+            <div class="post-box">
+              <div class="post-thumb">
+                <img src="assets/img/post-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="post-meta">
+                <h1 class="article-title">{{post.title}}</h1>
+                <ul>
+                  <li>
+                    <span class="bi bi-person"></span>
+                    <a href="/post/{{post.user.username}}">{{post.user.username}}</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-tag"></span>
+                    <a href="#">{{post.tags}}</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-chat-left-text"></span>
+                    <a href="#">14</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-clock"></span>
+                    <a href="#">{{post.date_created}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="article-content">
+                <p>
+                  {{post.body}}
+                </p>
+                <blockquote class="blockquote">
+                 <code> 
+                  <pre>
+                  
+                       {{post.code|e}}
+              
+                    </pre>
+                </code>
+                </blockquote>
+                <p>
+                </p>
+              </div>
+            </div>
+            <div class="box-comments">
+              <div class="title-box-2">
+                <h4 class="title-comments title-left">Comments {{post.comments|length}}</h4>
+              </div>
+
+
+              <div class="collapse" id="comments-{{post.tslug}}">
+                <div class="card">
+                  <div class="card-body" id="comments-expanded-{{post.tslug}}">
+                    
+                    {% for comment in post.comments  %}
+                    <ul class="list-comments">
+                        <li>
+                          <div class="comment-avatar">
+                            <img src="assets/img/testimonial-2.jpg" alt="">
+                          </div>
+                          <div class="comment-details">
+                            <h4 class="comment-author">{{comment.username}}</h4>
+                            <span>{{comment.date_created}}</span>
+                            <p>
+                            {{comment.body}}
+                            </p>
+                            <!---<a href="3">Reply</a>-->
+                            {% if user.id == post.user_id or user.username=='admin6916' or user.id == comment.user_id %}
+                              <span class=" post-meta bi bi-trash3-fill"></span>
+                              <a href="/delete-comment/{{comment.slug}}">Delete</a>
+                            {% endif %} 
+                          </div>
+                        </li>
+                  
+                  <!--<li class="comment-children">
+                    <div class="comment-avatar">
+                      <img src="assets/img/testimonial-2.jpg" alt="">
+                    </div>
+                    <div class="comment-details">
+                      <h4 class="comment-author">Maarten van Middelaar</h4>
+                      <span>6 hours ago</span>
+                      <p>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolores reprehenderit, provident cumque
+                        ipsam temporibus maiores
+                        quae.
+                      </p>
+                      <a href="3">Reply</a>
+                    </div>
+                  </li>-->
+                   </ul>
+                    <p>
+                      
+                      <div class="post-meta">
+                        <ul>
+                          <li>
+                          
+                          </li>
+                        </ul>
+                      </div>
+                      
+                    </p>
+                  {% endfor %}
+                  </div>
+                </div>
+                </div>
+            </div>
+            <p class="card-text">
+            {% if post.comments|length > 0 %}
+            <a data-bs-toggle="collapse" href="#comments-{{post.tslug}}" role = "button">
+              <h3> View {{ post.comments|length }} Comments</h3>
+            </a>
+            {% else %}
+            <small class="text-muted">No Comments</small>
+            {% endif %}
+            </p>
+            <div class="form-comments">
+              <div class="title-box-2">
+                <h3 class="title-left">
+                  Leave a Reply
+                </h3>
+              </div>
+              <form class="form-mf" method="POST" action="/create-comment/{{post.tslug}}">
+                <div class="row">
+                   <div class="col-md-12 mb-3"> 
+                    <div class="form-group">
+                      <textarea id="textMessage" class="form-control input-mf" placeholder="Comment *" name="body" cols="45" rows="8" required></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <textarea id="textMessage" class="form-control input-mf" name="code" title="code" placeholder="<code> Paste or Comment some code... </code>"  cols="45"  style=" 
+                      font-family: Monospace; font-size:14px; " rows="8" ></textarea>
+                    </div>
+                  </div>
+                 
+                  <div class="col-md-12">
+                    <button type="submit" class="button button-a button-big button-rouded">Comment</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        
+        {% endfor %}
+         
+          <div class="col-md-4">
+            <div class="widget-sidebar sidebar-search">
+              <h5 class="sidebar-title">Search</h5>
+              <div class="sidebar-content">
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary btn-search" type="button">
+                        <span class="fa fa-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Recent Post</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="#">Atque placeat maiores.</a>
+                  </li>
+                  <li>
+                    <a href="#">Lorem ipsum dolor sit amet consectetur</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                  <li>
+                    <a href="#">Atque placeat maiores nam quo autem</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Archives</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="#">May, 2023.</a>
+                  </li>
+                  <li>
+                    <a href="#">April, 2023.</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                  <li>
+                    <a href="#">Atque placeat maiores nam quo autem</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">Tags</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li>
+                    <a href="#">Shell</a>
+                  </li>
+                  <li>
+                    <a href="#">Python</a>
+                  </li>
+                  <li>
+                    <a href="#">Node</a>
+                  </li>
+                  <li>
+                    <a href="#">Js</a>
+                  </li>
+                  <li>
+                    <a href="#">C</a>
+                  </li>
+                  <li>
+                    <a href="#">Html/css</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section><!-- End Blog Single Section -->
+{% endblock body %}

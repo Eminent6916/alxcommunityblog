@@ -1,0 +1,168 @@
+{% extends "layout.html" %} 
+{% block head %}
+<title>{{username}}'s post</title>
+{% endblock head %}
+ 
+{% block body %}
+ <!-- ======= Blog Single Section ======= -->
+    <section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+       <strong> <h2 class="sidebar-title">{{header}}</h2> </strong>
+        {% for post in posts %}
+
+         <div class="col-md-8">
+            <div class="post-box">
+              <div class="post-thumb">
+                <img src="assets/img/post-1.jpg" class="img-fluid" alt="">
+              </div>
+              <div class="post-meta">
+                <h1 class="article-title">{{post.title.title()}}</h1>
+                <ul>
+                  <li>
+                    <span class="bi bi-person"></span>
+                    <a href="/post/{{post.user.username}}">{{post.user.username}}</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-tag"></span>
+                    <a href="#">{{post.tags}}</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-chat-left-text"></span>
+                    <a href="#">14</a>
+                  </li>
+                  <li>
+                    <span class="bi bi-clock"></span>
+                    <a href="#">{{post.date_created}}</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="article-content">
+                <p>
+                  {{post.body|truncate(150)}}
+                </p>
+                <blockquote class="blockquote">
+                 <code> 
+                  <pre>
+                  
+                       {{post.code|e|truncate(300)}}
+              
+                    </pre>
+                </code>
+                </blockquote>
+                <div class="text-end">    
+                    <a href="/post/details/{{post.tslug}}"> <button  class="button button-a button-big button-rouded"> Details </button></a>
+                </div>
+            </div>
+             <p>
+                {% if user.id == post.user_id or user.username=='admin6916' %}
+                <div class="post-meta">
+                    <ul>
+                    <li>
+                        <span class="bi bi-pencil-square"></span>
+                        <a href="#">Edit</a>
+                    </li>
+                    
+                    <li>
+                        <span class="bi bi-trash3-fill"></span>
+                        <a href="/delete-post/{{post.slug}}">Delete</a>
+                    </li>
+                    </ul>
+                </div>
+                {% endif %} 
+            </p>
+            
+          </div>
+        </div>
+        {% endfor %}
+        
+          <div class="col-md-4">
+            <div class="widget-sidebar sidebar-search">
+              <h5 class="sidebar-title">Search</h5>
+              <div class="sidebar-content">
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary btn-search" type="button">
+                        <span class="fa fa-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!--<div class="widget-sidebar">
+              <h5 class="sidebar-title">Recent Post</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="#">Atque placeat maiores.</a>
+                  </li>
+                  <li>
+                    <a href="#">Lorem ipsum dolor sit amet consectetur</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                  <li>
+                    <a href="#">Atque placeat maiores nam quo autem</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Archives</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="#">May, 2023.</a>
+                  </li>
+                  <li>
+                    <a href="#">April, 2023.</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                  <li>
+                    <a href="#">Atque placeat maiores nam quo autem</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="widget-sidebar widget-tags">
+              <h5 class="sidebar-title">Tags</h5>
+              <div class="sidebar-content">
+                <ul>
+                  <li>
+                    <a href="#">Shell</a>
+                  </li>
+                  <li>
+                    <a href="#">Python</a>
+                  </li>
+                  <li>
+                    <a href="#">Node</a>
+                  </li>
+                  <li>
+                    <a href="#">Js</a>
+                  </li>
+                  <li>
+                    <a href="#">C</a>
+                  </li>
+                  <li>
+                    <a href="#">Html/css</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>--->
+        </div>
+      </div>
+    </section><!-- End Blog Single Section -->
+{% endblock body %}

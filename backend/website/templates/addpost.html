@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block head %}
+<title> Addpost- Alx Community Blog</title>
+{% endblock head %}
+{% block body %}
+
+<section class="blog-wrapper sect-pt4" id="blog">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-comments">
+                <div class="title-box-2">
+                    <h3 class="title-left">
+                        Create Post
+                    </h3>
+                </div>
+              <form class="form-mf" method="POST">
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <div class="form-group">
+                        <input type="text" class="form-control input-mf" name="title" id="inputTitle" placeholder="Title *" required>
+                        </div>
+                    </div>
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <input type="text" class="form-control input-mf" name="tags" id="tag"  placeholder="Tag(s): #C #py #algorithm, etc" required>
+                    </div>
+                </div>
+                <!--<div class="col-md-12 mb-3">
+                    <div class="form-group">
+                        <input type="url" class="form-control input-mf" id="inputUrl" placeholder="Website">
+                    </div>
+                </div>--->
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <textarea id="textMessage" class="form-control input-mf" name="body" title="body" placeholder="Body *"  cols="45" rows="15" required></textarea>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <textarea id="textMessage" class="form-control input-mf" name="code" title="code" placeholder="<code> Paste or type some code... </code>"  cols="45"  style=" 
+                      font-family: Monospace; font-size:14px; " rows="30" ></textarea>
+                    </div>
+                </div>
+                    <div class="col-md-12">
+                        <button type="submit" class="button button-a button-big button-rouded">Send Message</button>
+                    </div>
+                </div>
+              </form>
+            </div>
+            </div>
+          
+          <div class="col-md-4">
+            <div class="widget-sidebar sidebar-search">
+              <h5 class="sidebar-title">Search</h5>
+              <div class="sidebar-content">
+                <form>
+                  <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-secondary btn-search" type="button">
+                        <span class="fa fa-search"></span>
+                      </button>
+                    </span>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="widget-sidebar">
+              <h5 class="sidebar-title">Recent Post</h5>
+              <div class="sidebar-content">
+                <ul class="list-sidebar">
+                  <li>
+                    <a href="#">Atque placeat maiores.</a>
+                  </li>
+                  <li>
+                    <a href="#">Lorem ipsum dolor sit amet consectetur</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                  <li>
+                    <a href="#">Atque placeat maiores nam quo autem</a>
+                  </li>
+                  <li>
+                    <a href="#">Nam quo autem exercitationem.</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+{% endblock body %}
