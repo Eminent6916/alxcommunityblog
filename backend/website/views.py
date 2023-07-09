@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import datetime
-from .models import Post, User, Comment
+from .models import Post, User, Comment, Like
 from . import db
 
 
@@ -20,6 +20,8 @@ def index():
 @views.route('/create-post', methods=['GET', 'POST'])
 @login_required
 def create_post():
+    user = User.query.filter_by(username=current_user.username).first()
+    posts = Post.query.filter_by(user_id=user.id).all()
     if request.method == "POST":
         title = request.form.get('title')
         body = request.form.get('body')
@@ -54,7 +56,7 @@ def create_post():
             flash('Post created successfully', 'success')
             return redirect(url_for('views.post'))
 
-    return render_template("addpost.html", user=current_user)
+    return render_template("addpost.html", user=current_user, posts=posts )
 
 @views.route('/blog')
 @views.route('/posts')
@@ -85,8 +87,8 @@ def delete_post(slug):
 @views.route("/post/<query>") 
 def posts(query):
         user = User.query.filter_by(username=query).first()
-        post_user= Post.query.filter_by(user_id=user.id).all()
         post_tslug = Post.query.filter_by(tslug=query).all()
+        post_user= Post.query.filter_by(user_id=current_user.id).all()
         posts = Post.query.all()
 
    
@@ -138,14 +140,14 @@ def create_comment(query):
         else:
             flash("Post does not exist", category="error")
 
-    return redirect(url_for('views.posts', query=post.tslug))
+    return redirect(url_for('views.details', query=post.tslug))
 
 @views.route("/delete-comment/<slug>")
 @login_required
 def delete_comment(slug):
     ad = User.query.filter_by(username='admin6916').first()
     comment = Comment.query.filter_by(slug=slug).first()
-  
+    post = Post.query.filter_by(id=comment.post_id).first()
     if not comment:
         flash("Noting Found", category='error')
     elif ad.username =='admin6916':
@@ -159,4 +161,35 @@ def delete_comment(slug):
         db.session.commit()
 
     posts = Post.query.all()
-    return render_template('blog.html', user=current_user, posts=posts)
+    return redirect(url_for('views.details', query=post.tslug))
+
+@views.route("/like-post/<query>",  methods=["GET"])
+@login_required
+def like(query):
+    post = Post.query.filter_by(tslug=query).first()
+    
+    like = Like.query.filter_by(user_id=current_user.id, post_id = post.id).first()
+
+    if not post:
+        flash('Post not found', category='error')
+    elif like:
+        db.session.delete(like)
+        db.session.commit()
+    else:
+        like = Like(user_id=current_user.id, post_id=post.id)
+        db.session.add(like)
+        db.session.commit()
+    return redirect(url_for('views.details', query=query))
+
+@views.route('/profile')
+@views.route('/profile/')
+@views.route("/profile/<username>", methods=['GET', 'POST'])
+@login_required
+def profile(username):
+    user = User.query.filter_by(username=username).first()
+    posts = Post.query.filter_by(user_id=user.id).all()
+    return render_template('profile.html', user=current_user, posts = posts)
+
+@views.route('/about')
+def about():
+    return render_template('about.html', user=current_user)

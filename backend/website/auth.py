@@ -37,6 +37,13 @@ def sign_up():
         country = request.form.get("country")
         phone = request.form.get("phone")
         email = request.form.get("email")
+        status = request.form.get("status")
+        about = request.form.get("about")
+        github = request.form.get("github")
+        twitter = request.form.get("twitter")
+        instagram = request.form.get("instagram")
+        facebook = request.form.get("facebook")
+        website = request.form.get("website")
         password = request.form.get("password")
         password2 = request.form.get("password2")
         username = request.form.get("username")
@@ -62,16 +69,23 @@ def sign_up():
         else:
             new_user = User(email = email,
                             name = name,
-                            password = generate_password_hash(password, method='sha256'),
                             username = username,
+                            password = generate_password_hash(password, method='sha256'),
                             cohort = cohort,
                             country = country,
                             phone = phone,
+                            status = status,
+                            about = about,
+                            instagram = instagram,
+                            twitter = twitter,
+                            github = github,
+                            facebook = facebook,
+                            website = website,
                             )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
-            flash('User Successfully Created')
+            flash('User Successfully Created. Welcome ' + current_user.username)
             return redirect(url_for('views.index', user=current_user))
         
     return render_template("signup.html")

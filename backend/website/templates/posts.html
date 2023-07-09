@@ -17,7 +17,9 @@
                 <img src="assets/img/post-1.jpg" class="img-fluid" alt="">
               </div>
               <div class="post-meta">
+                <a href="/post/details/{{post.tslug}}">
                 <h1 class="article-title">{{post.title.title()}}</h1>
+                </a>
                 <ul>
                   <li>
                     <span class="bi bi-person"></span>
@@ -27,10 +29,7 @@
                     <span class="bi bi-tag"></span>
                     <a href="#">{{post.tags}}</a>
                   </li>
-                  <li>
-                    <span class="bi bi-chat-left-text"></span>
-                    <a href="#">14</a>
-                  </li>
+                  
                   <li>
                     <span class="bi bi-clock"></span>
                     <a href="#">{{post.date_created}}</a>
@@ -75,24 +74,16 @@
           </div>
         </div>
         {% endfor %}
-        
-          <div class="col-md-4">
+        {% if posts|length == 0 %}
             <div class="widget-sidebar sidebar-search">
-              <h5 class="sidebar-title">Search</h5>
-              <div class="sidebar-content">
-                <form>
-                  <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
-                    <span class="input-group-btn">
-                      <button class="btn btn-secondary btn-search" type="button">
-                        <span class="fa fa-search"></span>
-                      </button>
-                    </span>
-                  </div>
-                </form>
+              <h5 class="sidebar-title">No Post Found!</h5>
+
               </div>
             </div>
-            <!--<div class="widget-sidebar">
+        {% endif %}
+         <!-- <div class="col-md-4">
+           
+            <div class="widget-sidebar">
               <h5 class="sidebar-title">Recent Post</h5>
               <div class="sidebar-content">
                 <ul class="list-sidebar">

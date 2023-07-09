@@ -1,5 +1,5 @@
-import random
-import datetime
+# import random
+# import datetime
 # print(random.randint(0, 10))
 # r = "random generated hex string with length greater than"
 # z=""
@@ -11,7 +11,7 @@ import datetime
 # print(z)
 
 # import random
-# # print(random.randint(0, 10))
+# print(random.randint(0, 10))
 # title= "random generated hex string with length greater than"
 # tslug = ""
 # twords = title.split(" ")
@@ -20,4 +20,4 @@ import datetime
 #         tslug=twords[0]
 #     tslug = tslug + '-' + word
 # print(tslug)
-print(datetime.datetime.now())
+# print(datetime.datetime.now())
