@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+# from flask_mysqldb import MySQL
 
 db = SQLAlchemy()
 DB_NAME = "Alxdatabase"
@@ -10,8 +11,8 @@ DB_NAME = "Alxdatabase"
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "alxcommunity6916"
-    # app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'mysql://6916:ologunde3570@localhost/{DB_NAME}'
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    # app.config['SQLALCHEMY_DATABASE_URI'] = f'mpip mysql://6916:ologunde3570@localhost/{DB_NAME}'
     
     db.init_app(app)    
 
